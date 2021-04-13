@@ -1,0 +1,12 @@
+[Unit]
+Description="Serve Camera stream"
+After=multi-user.target
+
+[Service]
+Environment=LD_LIBRARY_PATH=/home/pi/mjpg-streamer/mjpg-streamer-experimental
+ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 640 -y 640 -fps 15 -ex snow -usestills -vs"
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

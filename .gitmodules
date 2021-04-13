@@ -1,0 +1,6 @@
+[submodule "koruza_v2_driver"]
+	path = koruza_v2_driver
+	url = https://github.com/IRNAS/koruza-v2-driver
+[submodule "koruza_v2_ui"]
+	path = koruza_v2_ui
+	url = https://github.com/IRNAS/koruza-v2-ui
