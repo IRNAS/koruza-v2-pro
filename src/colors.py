@@ -1,0 +1,11 @@
+""" Defines colors used in the ui and led indicator """
+class Color():
+    LED_OFF = "#000000"
+    NO_SIGNAL = "#ff0000"
+    BAD_SIGNAL = "#ff4500"
+    VERY_WEAK_SIGNAL = "#ff7f50"
+    WEAK_SIGNAL = "#ff00ff"
+    MEDIUM_SIGNAL = "#0000ff"
+    GOOD_SIGNAL = "#0045ff"
+    VERY_GOOD_SIGNAL = "#00ffff"
+    EXCELLENT_SIGNAL = "#00ff00"

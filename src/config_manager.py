@@ -17,18 +17,6 @@ class ConfigManager():
         self.camera = self.load_json_file("./koruza_v2/config/camera.json")
         self.motors = self.load_json_file("./koruza_v2/config/motors.json")
 
-    def get_calibration(self):
-        """Return calibration part of json file"""
-        return self.config["calibration"]
-
-    def get_motors_position(self):
-        """Return motors part of json file"""
-        return self.config["motors"]
-
-    def get_camera_config(self):
-        """Return camera config part of json file"""
-        return self.config["camera"]
-
     def update_calibration_config(self, key_value_pairs):
         """Update calibration config with given key_value_pairs"""
         print("Updating calibration config")

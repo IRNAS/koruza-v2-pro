@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi
-ExecStart=python3 -m koruza_v2.koruza_v2_driver.koruza
+ExecStart=python3 -m koruza_v2.koruza_v2_driver.main
 Restart=on-failure
 RestartSec=5
 

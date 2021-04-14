@@ -5,6 +5,8 @@ This repository contains all code used to setup, run and manage the KORUZA Pro V
 ### Software
 * [KORUZA V2 driver](https://github.com/IRNAS/koruza-v2-driver) - main KORUZA code, implements interfaces to all hardware modules and packages core functionality into a single main module
 * [KORUZA V2 UI](https://github.com/IRNAS/koruza-v2-ui) - KORUZA user interface available to the user through the web browser
+* [KORUZA V2 device to device management](https://github.com/IRNAS/koruza-v2-device-management) - KORUZA device to device management with Bluetooth and Python
+* [KORUZA V2 tracking](https://github.com/IRNAS/koruza-v2-tracking) - KORUZA auto aligment and tracking
 * [mjpg-streamer fork](https://github.com/IRNAS/mjpg-streamer) - fork of mjpg-streamer with added functions required for KORUZA
 * [Raspberry Pi OS](https://www.raspberrypi.org/software/) core operating system on Raspberry Pi
 
