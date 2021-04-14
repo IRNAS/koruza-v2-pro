@@ -1,3 +1,5 @@
+# TODO: Implement autoinstall of mjpg_streamer streamer
+
 [Unit]
 Description="Serve Camera stream"
 After=multi-user.target
