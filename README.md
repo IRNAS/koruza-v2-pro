@@ -1,3 +1,3 @@
-# KORUZA-v2-pro
+# koruza-v2-pro
 
 Latest version of KORUZA
