@@ -1,12 +1,12 @@
 # TODO: Implement autoinstall of mjpg_streamer streamer
 
 [Unit]
-Description="Serve Camera stream"
+Description="Serve Video stream"
 After=multi-user.target
 
 [Service]
 Environment=LD_LIBRARY_PATH=/home/pi/mjpg-streamer/mjpg-streamer-experimental
-ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 640 -y 640 -fps 15 -ex snow -vs -roi 0.25,0.25,0.5,0.5"
+ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 720 -y 720 -fps 15 -ex snow -vs -roi 0.25,0.25,0.5,0.5"
 Restart=on-failure
 RestartSec=5
 
