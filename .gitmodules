@@ -4,3 +4,6 @@
 [submodule "koruza_v2_ui"]
 	path = koruza_v2_ui
 	url = https://github.com/IRNAS/koruza-v2-ui
+[submodule "koruza_v2_d2d"]
+	path = koruza_v2_d2d
+	url = https://github.com/IRNAS/koruza-v2-device-management/

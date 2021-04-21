@@ -17,11 +17,13 @@ s.connect(("8.8.8.8", 80))
 LOCALHOST = s.getsockname()[0]
 """
 
+# ports are set the same on both units, only ip is different
 # RPC
 KORUZA_MAIN_PORT = 8000
-BLE_PORT = 8001
-AUTO_ALIGNMENT_PORT = 8002
-CONFIG_PORT = 8003
+DEVICE_MANAGEMENT_PORT = 8001
+
+# TODO set ip based on selected config
+OTHER_UNIT_IP = "192.168.13.226"
 
 # ========== UI =====================
 SQUARE_SIZE = 18
