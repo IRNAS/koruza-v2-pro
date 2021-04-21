@@ -1,0 +1,19 @@
+{
+    "device_mgmt": {
+        "channel": "wifi",
+        "ble": {
+            "mode": "master",
+            "addr": "xxxxxxxx-0000-1000-8000-00805F9B34FB",
+            "remote_unit_addr": "xxxxxxxx-0000-1000-8000-00805F9B34FB"
+        },
+        "wifi": {
+            "mode": "master",
+            "addr": "192.168.13.193",
+            "remote_unit_addr": "192.168.13.226"
+        }
+    },
+    "camera": {
+        "width": 640,
+        "height": 640
+    }
+}

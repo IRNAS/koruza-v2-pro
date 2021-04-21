@@ -23,7 +23,7 @@ KORUZA_MAIN_PORT = 8000
 DEVICE_MANAGEMENT_PORT = 8001
 
 # TODO set ip based on selected config
-OTHER_UNIT_IP = "192.168.13.226"
+REMOTE_UNIT_IP = "192.168.13.226"
 
 # ========== UI =====================
 SQUARE_SIZE = 18

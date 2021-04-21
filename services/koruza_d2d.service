@@ -1,0 +1,12 @@
+[Unit]
+Description="Koruza Device to Device management service"
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_d2d.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

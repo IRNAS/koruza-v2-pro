@@ -159,7 +159,7 @@ sudo systemctl start koruza_main
 ```
 [Unit]
 Description="Koruza UI service"
-After=multi-user.target
+After=multi-user.target koruza_main.service
 
 [Service]
 WorkingDirectory=/home/pi
@@ -175,4 +175,27 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload 
 sudo systemctl enable koruza_ui
 sudo systemctl start koruza_ui
+```
+
+### KORUZA Device Management service on boot
+1. Copy the snippet below and paste it to a new service file created with `sudo nano /etc/systemd/system/koruza_d2d.service`
+```
+[Unit]
+Description="Koruza Device to Device management service"
+After=multi-user.target koruza_main.service
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_d2d.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+2. Run the following commands to enable the service
+```
+sudo systemctl daemon-reload 
+sudo systemctl enable koruza_d2d
+sudo systemctl start koruza_d2d
 ```
