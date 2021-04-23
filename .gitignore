@@ -1,3 +1,5 @@
-*/__pycache__/*
+images/*
 logs/*
 *.lock
+__pycache__
+__pycache__/*

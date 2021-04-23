@@ -7,3 +7,6 @@
 [submodule "koruza_v2_d2d"]
 	path = koruza_v2_d2d
 	url = https://github.com/IRNAS/koruza-v2-device-management/
+[submodule "koruza_v2_tracking"]
+	path = koruza_v2_tracking
+	url = https://github.com/IRNAS/koruza-v2-tracking
