@@ -36,7 +36,8 @@ cd usbboot
 ### Installation
 1. Install required dependencies with
 ```
-sudo apt install python3-pip wiringpi libatlas-base-dev
+sudo apt update
+sudo apt install python3-pip wiringpi libatlas-base-dev git
 ```
 2. Clone this repository and init submodules with
 ```
@@ -78,7 +79,7 @@ sudo make install
 
 ### Camera configuration
 1. Move into the repository with `cd koruza_v2`
-1. Run `cp dt-blob.bin /boot/dt-blob.bin`
+1. Run `sudo cp dt-blob.bin /boot/dt-blob.bin`
 2. Reboot
 3. Test camera with `raspistill -o test.jpg`
 
@@ -117,7 +118,7 @@ After=multi-user.target
 
 [Service]
 Environment=LD_LIBRARY_PATH=/home/pi/mjpg-streamer/mjpg-streamer-experimental
-ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 640 -y 640 -fps 15 -ex snow -vs -roi 0.25,0.25,0.5,0.5"
+ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 720 -y 720 -fps 15 -ex snow -vs -roi 0.25,0.25,0.5,0.5"
 Restart=on-failure
 RestartSec=5
 
@@ -140,7 +141,7 @@ After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi
-ExecStart=python3 -m koruza_v2.koruza_v2_driver.koruza
+ExecStart=python3 -m koruza_v2.koruza_v2_driver.main
 Restart=on-failure
 RestartSec=5
 
