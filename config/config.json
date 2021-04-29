@@ -9,11 +9,11 @@
         "wifi": {
             "mode": "master",
             "addr": "192.168.13.193",
-            "remote_unit_addr": "192.168.13.226"
+            "remote_unit_addr": "192.168.13.199"
         }
     },
     "camera": {
-        "width": 640,
-        "height": 640
+        "width": 720,
+        "height": 720
     }
 }
