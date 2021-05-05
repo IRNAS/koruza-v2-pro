@@ -10,6 +10,11 @@
             "mode": "master",
             "addr": "192.168.13.193",
             "remote_unit_addr": "192.168.13.199"
+        },
+        "local": {
+            "mode": "master",
+            "addr": "192.168.13.193",
+            "remote_unit_addr": "192.168.13.199"
         }
     },
     "camera": {
