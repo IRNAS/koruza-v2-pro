@@ -29,4 +29,4 @@ REMOTE_UNIT_IP = "192.168.13.199"
 SQUARE_SIZE = 18
 
 # ========== ALIGNMENT ==============
-RESEND_COMMAND_TIME = 10  # 10 seconds
+RESEND_COMMAND_TIME = 2  # 10 seconds
