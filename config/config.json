@@ -1,6 +1,6 @@
 {
     "device_mgmt": {
-        "channel": "wifi",
+        "channel": "local",
         "ble": {
             "mode": "master",
             "addr": "xxxxxxxx-0000-1000-8000-00805F9B34FB",
@@ -8,12 +8,12 @@
         },
         "wifi": {
             "mode": "master",
-            "addr": "192.168.13.193",
+            "addr": "192.168.13.136",
             "remote_unit_addr": "192.168.13.199"
         },
         "local": {
             "mode": "master",
-            "addr": "192.168.13.193",
+            "addr": "192.168.13.136",
             "remote_unit_addr": "192.168.13.199"
         }
     },
