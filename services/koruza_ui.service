@@ -1,0 +1,12 @@
+[Unit]
+Description="Koruza UI service"
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_ui.index
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
