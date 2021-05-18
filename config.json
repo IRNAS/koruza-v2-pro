@@ -1,0 +1,24 @@
+{
+    "device_mgmt": {
+        "channel": "wifi",
+        "ble": {
+            "mode": "primary",
+            "addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "remote_unit_addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        },
+        "wifi": {
+            "mode": "primary",
+            "addr": "xxx.xxx.xxx.xxx",
+            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+        },
+        "local": {
+            "mode": "primary",
+            "addr": "xxx.xxx.xxx.xxx",
+            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+        }
+    },
+    "camera": {
+        "width": 720,
+        "height": 720
+    }
+}
