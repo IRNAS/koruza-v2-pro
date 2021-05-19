@@ -16,6 +16,7 @@ Documentation on KORUZA technology, principles of operation, user manual and oth
 
 ### Hardware
 * [KORUZA move driver](https://github.com/IRNAS/koruza-move-driver) - standalone motor controller board for dual unipolar stepper motors in KORUZA Pro for automatic alignment
+* [KORUZA V2 mechanics](https://github.com/IRNAS/koruza-v2-mechanics) - repository with STEP files of KORUZA mechanics.
 
 ## Setup
 
