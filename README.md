@@ -3,6 +3,8 @@
 This repository contains all code used to setup, run and manage the KORUZA v2 Pro unit.
 
 Documentation on KORUZA technology, principles of operation, user manual and other details can be found on [this link](https://docs.koruza.net).
+![link](https://user-images.githubusercontent.com/14543226/118765881-f8d30800-b87b-11eb-8a44-dd27cfc5f764.png)
+
 
 ### Software
 * [KORUZA V2 driver](https://github.com/IRNAS/koruza-v2-driver) - main KORUZA code, implements interfaces to all hardware modules and packages core functionality into a single main module
