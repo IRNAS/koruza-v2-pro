@@ -41,7 +41,7 @@ cd usbboot
 1. Install required dependencies with
 ```
 sudo apt update
-sudo apt install python3-pip wiringpi libatlas-base-dev git
+sudo apt install python3-pip wiringpi libatlas-base-dev git python3-matplotlib
 ```
 2. Clone this repository and init submodules with
 ```

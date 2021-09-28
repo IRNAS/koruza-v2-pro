@@ -3,4 +3,4 @@ logs/*
 *.lock
 __pycache__
 __pycache__/*
-config/config.json
+config/*
