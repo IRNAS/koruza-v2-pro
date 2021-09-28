@@ -27,10 +27,9 @@ sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
 
 sudo mkdir ./config
 sudo cp config.json ./config
+sudo cp calibration.json ./config/calibration.json
 sudo cp factory_defaults.json ./config/factory_defaults.json
 sudo chattr -i ./config/factory_defaults.json
-
-sudo mkdir ./images
 
 echo "Copying koruza services to /etc/systemd/system/"
 sudo cp /home/pi/koruza_v2/services/gpio_config.service /etc/systemd/system/gpio_config.service
