@@ -1,5 +1,6 @@
 {
     "unit_id": "not_set",
+    "version": "",
     "cloud_config": {
         "url": "www.influxdb.com/koruza",
         "port": 8086,

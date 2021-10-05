@@ -1,12 +1,12 @@
 # 0. Install requirements
-cd ~/koruza_v2
+cd /home/pi/koruza_v2
 sudo pip3 install -r koruza_v2_ui/requirements.txt
 sudo pip3 install -r koruza_v2_cloud/requirements.txt 
 sudo pip3 install -r koruza_v2_driver/requirements.txt 
 sudo python3 -m pip install --force-reinstall adafruit-blinka
 
 # 1. install mjpeg-streamer
-cd ~
+cd /home/pi
 echo "Cloning mjpeg-streamer fork"
 git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
 sudo apt install cmake libjpeg8-dev
@@ -17,11 +17,11 @@ sudo make install
 
 # 2. copy device tree configuration
 echo "Copying device tree configuration to /boot/dt-blob.bin"
-cd ~/koruza_v2
+cd /home/pi/koruza_v2
 sudo cp dt-blob.bin /boot/dt-blob.bin
 
 # 3. create koruza services and missing folders with files
-cd ~/koruza_v2
+cd /home/pi/koruza_v2
 sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
