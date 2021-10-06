@@ -6,7 +6,8 @@
         "port": 8086,
         "dbname": "koruzaDb",
         "username": "user123",
-        "password": "user123pass"
+        "password": "user123pass",
+        "interval": 10
     },
     "link_config": {
         "channel": "wifi",
