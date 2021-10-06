@@ -1,0 +1,12 @@
+[Unit]
+Description="Koruza Alignment Engine service"
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_tracking.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

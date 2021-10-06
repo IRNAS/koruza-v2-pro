@@ -39,11 +39,12 @@ sudo cp /home/pi/koruza_v2/services/koruza_main.service /etc/systemd/system/koru
 sudo cp /home/pi/koruza_v2/services/koruza_ui.service /etc/systemd/system/koruza_ui.service
 sudo cp /home/pi/koruza_v2/services/koruza_d2d.service /etc/systemd/system/koruza_d2d.service
 sudo cp /home/pi/koruza_v2/services/koruza_cloud.service /etc/systemd/system/koruza_cloud.service
+sudo cp /home/pi/koruza_v2/services/koruza_alignment_engine.service /etc/systemd/system/koruza_alignment_engine.service
 
 echo "Starting all services"
 sudo systemctl daemon-reload
-sudo systemctl enable koruza_main koruza_ui koruza_d2d koruza_cloud gpio_config video_stream
-sudo systemctl start koruza_main koruza_ui koruza_d2d koruza_cloud gpio_config video_stream
+sudo systemctl enable koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
+sudo systemctl start koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
 
 echo "Rebooting RPi for configuration to take effect"
 sleep 1
