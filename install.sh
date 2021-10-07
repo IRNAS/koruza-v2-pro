@@ -28,6 +28,7 @@ sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
 
 sudo mkdir ./config
 sudo cp config.json ./config
+sudo cp .camera_config ./config/.camera_config
 sudo cp calibration.json ./config/calibration.json
 sudo cp factory_defaults.json ./config/factory_defaults.json
 sudo chattr -i ./config/factory_defaults.json
