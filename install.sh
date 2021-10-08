@@ -7,18 +7,28 @@ sudo python3 -m pip install --force-reinstall adafruit-blinka
 
 # 1. install mjpeg-streamer
 cd /home/pi
-echo "Cloning mjpeg-streamer fork"
-git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
-sudo apt install cmake libjpeg8-dev
-cd mjpg-streamer/mjpg-streamer-experimental
-echo "Installing mjpeg-streamer"
-make
-sudo make install
+echo "Starting mjpg-streamer installation"
+if [ ! -d "/home/pi/mjpg-streamer" ]; then
+    echo "Cloning mjpg-streamer fork"
+    git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
+    sudo apt install cmake libjpeg8-dev
+    cd mjpg-streamer/mjpg-streamer-experimental
+    echo "Installing mjpeg-streamer"
+    make
+    sudo make install
+else
+    echo "mjpg-streamer already installed. Skipping installation."
+fi
 
 # 2. copy device tree configuration
-echo "Copying device tree configuration to /boot/dt-blob.bin"
-cd /home/pi/koruza_v2
-sudo cp dt-blob.bin /boot/dt-blob.bin
+echo "Checking if device tree configration exists"
+if [ ! -f "/boot/dt-blob.bin" ]; then
+    echo "Copying device tree configuration to /boot/dt-blob.bin"
+    cd /home/pi/koruza_v2
+    sudo cp dt-blob.bin /boot/dt-blob.bin
+else
+    echo "Device tree configuration already exists in /boot/dt-blob.bin"
+fi
 
 # 3. create koruza services and missing folders with files
 cd /home/pi/koruza_v2
@@ -26,12 +36,37 @@ sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
 
+echo "Copying configuration files to /home/pi/koruza_v2/config"
+cd /home/pi/koruza_v2
 sudo mkdir ./config
-sudo cp config.json ./config
-sudo cp .camera_config ./config/.camera_config
-sudo cp calibration.json ./config/calibration.json
-sudo cp factory_defaults.json ./config/factory_defaults.json
-sudo chattr -i ./config/factory_defaults.json
+if [ ! -f "./config/config.json" ]; then
+    echo "Copying config.json to /home/pi/koruza_v2/config/config.json"
+    sudo cp config.json ./config
+else
+    echo "config.json already exists in /home/pi/koruza_v2/config/config.json"
+fi
+
+if [ ! -f "./config/.camera_config" ]; then
+    echo "Copying .camera_config to /home/pi/koruza_v2/config/.camera_config"
+    sudo cp .camera_config ./config/.camera_config
+else
+    echo ".camera_config already exists in /home/pi/koruza_v2/config/.camera_config"
+fi
+
+if [ ! -f "./config/calibration.json" ]; then
+    echo "Copying calibration.json to /home/pi/koruza_v2/config/calibration.json"
+    sudo cp calibration.json ./config/calibration.json
+else
+    echo "calibration already exists in /home/pi/koruza_v2/config/calibration.json"
+fi
+
+if [ ! -f "./config/factory_defaults.json" ]; then
+    echo "Copying factory_defaults.json to /home/pi/koruza_v2/config/factory_defaults.json"
+    sudo cp factory_defaults.json ./config/calibration.json
+    sudo chattr -i ./config/factory_defaults.json
+else
+    echo "factory_defaults.json already exists in /home/pi/koruza_v2/config/factory_defaults.json"
+fi
 
 echo "Copying koruza services to /etc/systemd/system/"
 sudo cp /home/pi/koruza_v2/services/gpio_config.service /etc/systemd/system/gpio_config.service

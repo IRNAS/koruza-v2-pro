@@ -7,6 +7,9 @@ echo "Pulling latest version of the KORUZA software"
 git checkout $1
 git pull --recurse-submodules
 
+echo "Running install.sh script"
+bash /home/pi/koruza_v2/install.sh
+
 echo "Rebooting RPi for update to take effect"
 sleep 1
 sudo reboot now

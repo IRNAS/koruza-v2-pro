@@ -50,3 +50,17 @@ def set_camera_config(x, y, img_p):
     with open("/home/pi/koruza_v2/config/.camera_config", "w") as file:
         for line in new_lines:
             file.write(line)
+
+def get_camera_config():
+    """Read camera config from file and return values"""
+    # Read in the file
+    with open("/home/pi/koruza_v2/config/.camera_config", "r") as file:
+        filedata = file.readlines()
+
+    # Replace the target values
+    config = {}
+    for line in filedata:
+        setting = line.split("=")
+        config[setting[0].lower()] = float(setting[1])
+
+    return config
