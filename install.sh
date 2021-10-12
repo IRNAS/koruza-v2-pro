@@ -2,7 +2,8 @@
 cd /home/pi/koruza_v2
 sudo pip3 install -r koruza_v2_ui/requirements.txt
 sudo pip3 install -r koruza_v2_cloud/requirements.txt 
-sudo pip3 install -r koruza_v2_driver/requirements.txt 
+sudo pip3 install -r koruza_v2_driver/requirements.txt
+sudo pip3 install -r koruza_v2/requirements.txt
 sudo python3 -m pip install --force-reinstall adafruit-blinka
 
 # 1. install mjpeg-streamer
