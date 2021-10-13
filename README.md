@@ -38,6 +38,7 @@ cd usbboot
 11. To enable SSH place a file called `ssh` into the boot folder of the compute module
 12. Set up passwordless ssh for easy access with: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
 
+
 ### Installation
 1. Install required dependencies with
 ```
@@ -108,12 +109,53 @@ sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
 sudo cp ./koruza_v2_ui/secrets_example.json ./koruza_v2_ui/secrets.json
-sudo cp config.json ./config
+sudo cp example_config.json ./config
 sudo cp .camera_config ./config/.camera_config
 sudo cp calibration.json ./config/calibration.json
-sudo cp factory_defaults.json ./config/calibration.json
+sudo cp .factory_defaults.json ./config/calibration.json
 sudo chattr -i ./config/factory_defaults.json
 ```
+
+## Configuration
+To enable full KORUZA v2 Pro functionality with Device to Device communication the `./config/config.json` file has to be configured correctly. Included is the `example_config.json` which is copied to `./config/config.json` at install. Modify the `./config/config.json` file, which has the following structure:
+```
+{
+    "unit_id": "not_set",  // unit ID
+    "version": "not_set",  // software Version
+    "cloud_config": {
+        "url": "www.sample.com/koruza",  // url of your InfluxDB host
+        "port": 8086,  // port to your database
+        "dbname": "koruzaDb",  // name of your database
+        "username": "user123",  // username of account with write permissions
+        "password": "user123pass",  // password of above user
+        "interval": 10  // reporting interval
+    },
+    "link_config": {
+        "channel": "local",
+        "ble": {
+            "mode": "primary",  // settings for the ble secondary communication channel
+            "addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "remote_unit_addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        },
+        "wifi": {
+            "mode": "primary",  // settings for the wifi secondary communication channel
+            "addr": "xxx.xxx.xxx.xxx",
+            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+        },
+        "local": {
+            "mode": "primary",  // settings for the local network communication channel
+            "addr": "xxx.xxx.xxx.xxx",
+            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+        }
+    },
+    "camera": {
+        "width": 720,
+        "height": 720
+    }
+}
+```
+Usually the file does not have to be modified, as it is configured during the initial setup of KORUZA v2 Pro units.
+
 ## Services
 There are serveral services running to enable KORUZA functionality at startup.
 

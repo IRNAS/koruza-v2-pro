@@ -53,7 +53,7 @@ cd /home/pi/koruza_v2
 sudo mkdir ./config
 if [ ! -f "./config/config.json" ]; then
     echo "Copying config.json to /home/pi/koruza_v2/config/config.json"
-    sudo cp config.json ./config
+    sudo cp example_config.json ./config
 else
     echo "config.json already exists in /home/pi/koruza_v2/config/config.json"
 fi
@@ -67,14 +67,14 @@ fi
 
 if [ ! -f "./config/calibration.json" ]; then
     echo "Copying calibration.json to /home/pi/koruza_v2/config/calibration.json"
-    sudo cp calibration.json ./config/calibration.json
+    sudo cp .factory_defaults.json ./config/calibration.json
 else
     echo "calibration already exists in /home/pi/koruza_v2/config/calibration.json"
 fi
 
 if [ ! -f "./config/factory_defaults.json" ]; then
     echo "Copying factory_defaults.json to /home/pi/koruza_v2/config/factory_defaults.json"
-    sudo cp factory_defaults.json ./config/calibration.json
+    sudo cp .factory_defaults.json ./config/factory_defaults.json
     sudo chattr -i ./config/factory_defaults.json
 else
     echo "factory_defaults.json already exists in /home/pi/koruza_v2/config/factory_defaults.json"
