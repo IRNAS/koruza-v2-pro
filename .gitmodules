@@ -10,3 +10,6 @@
 [submodule "koruza_v2_tracking"]
 	path = koruza_v2_tracking
 	url = https://github.com/IRNAS/koruza-v2-tracking
+[submodule "koruza_v2_cloud"]
+	path = koruza_v2_cloud
+	url = https://github.com/IRNAS/koruza-v2-cloud.git

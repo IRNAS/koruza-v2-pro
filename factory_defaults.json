@@ -1,0 +1,12 @@
+{
+    "calibration": {
+        "offset_x": 499,
+        "offset_y": 278,
+        "zoom_level": 8
+    },
+    "camera_config": {
+        "X": 0.512112193592252,
+        "Y": 0.0,
+        "IMG_P": 0.3535533905932738
+    }
+}

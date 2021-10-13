@@ -1,5 +1,15 @@
 {
-    "device_mgmt": {
+    "unit_id": "not_set",
+    "version": "not_set",
+    "cloud_config": {
+        "url": "www.influxdb.com/koruza",
+        "port": 8086,
+        "dbname": "koruzaDb",
+        "username": "user123",
+        "password": "user123pass",
+        "interval": 10
+    },
+    "link_config": {
         "channel": "wifi",
         "ble": {
             "mode": "primary",
