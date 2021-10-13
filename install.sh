@@ -31,13 +31,22 @@ else
     echo "Device tree configuration already exists in /boot/dt-blob.bin"
 fi
 
-# 3. create koruza services and missing folders with files
+# 3. create koruza services and missing folders
 cd /home/pi/koruza_v2
 sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
+echo "Copying template data.json to /home/pi/koruza_v2_driver/data/data.json"
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
-
+echo "Copying secrets_example.json to /home/pi/koruza_v2_ui/secrets.json"
 sudo cp ./koruza_v2_ui/secrets_example.json ./koruza_v2_ui/secrets.json
+
+# 4. Configure interfaces
+echo "Enabling i2c"
+sudo raspi-config nonint do_i2c 0
+echo "Enabling camera"
+sudo raspi-config nonint do_camera 0
+echo "Enabling hardware serial"
+sudo raspi-config nonint do_serial 2 
 
 echo "Copying configuration files to /home/pi/koruza_v2/config"
 cd /home/pi/koruza_v2
