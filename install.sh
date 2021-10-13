@@ -94,6 +94,15 @@ sudo systemctl daemon-reload
 sudo systemctl enable koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
 sudo systemctl start koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
 
+echo "Enabling i2c"
+sudo raspi-config nonint do_i2c 0
+
+echo "Enabling camera"
+sudo raspi-config nonint do_camera 0
+
+echo "Enabling hardware serial"
+sudo raspi-config nonint do_serial 2 
+
 echo "Rebooting RPi for configuration to take effect"
 sleep 1
 sudo reboot now
