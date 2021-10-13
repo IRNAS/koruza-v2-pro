@@ -11,6 +11,7 @@ Documentation on KORUZA technology, principles of operation, user manual and oth
 * [KORUZA V2 UI](https://github.com/IRNAS/koruza-v2-ui) - KORUZA user interface available to the user through the web browser
 * [KORUZA V2 device to device management](https://github.com/IRNAS/koruza-v2-device-management) - KORUZA device to device management with Bluetooth and Python
 * [KORUZA V2 tracking](https://github.com/IRNAS/koruza-v2-tracking) - KORUZA auto aligment and tracking
+* [KORUZA V2 cloud](https://github.com/IRNAS/koruza-v2-cloud) - KORUZA cloud reporting
 * [mjpg-streamer fork](https://github.com/IRNAS/mjpg-streamer) - fork of mjpg-streamer with added functions required for KORUZA
 * [Raspberry Pi OS](https://www.raspberrypi.org/software/) core operating system on Raspberry Pi
 
@@ -49,10 +50,17 @@ git clone https://github.com/IRNAS/koruza-pro-v2 koruza_v2
 cd koruza_v2
 git submodule update --init
 ```
+
+3. Run the ./install.sh script
+
+OR follow these steps:
+
 3. Install python3 requirements with
 ```
 sudo pip3 install -r koruza_v2_ui/requirements.txt
-sudo pip3 install -r koruza_v2_driver/requirements.txt 
+sudo pip3 install -r koruza_v2_cloud/requirements.txt 
+sudo pip3 install -r koruza_v2_driver/requirements.txt
+sudo pip3 install -r requirements.txt
 ```
 4. Run `sudo python3 -m pip install --force-reinstall adafruit-blinka`
 
@@ -80,6 +88,12 @@ sudo make install
 7. Select `Yes` when asked `Would you like the serial port hardware to be enabled?`
 8. Exit the `raspi-config` screen and `reboot` the device
 
+OR alternatively using the raspi-config non-interactive mode:
+```
+sudo raspi-config nonint do_i2c 0
+sudo raspi-config nonint do_camera 0
+sudo raspi-config nonint do_serial 2 
+```
 
 ### Camera configuration
 1. Move into the repository with `cd koruza_v2`
@@ -87,7 +101,19 @@ sudo make install
 2. Reboot
 3. Test camera with `raspistill -o test.jpg`
 
-
+### Create missing folders and copy configuration files
+```
+cd /home/pi/koruza_v2
+sudo mkdir ./logs
+sudo mkdir ./koruza_v2_driver/data
+sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
+sudo cp ./koruza_v2_ui/secrets_example.json ./koruza_v2_ui/secrets.json
+sudo cp config.json ./config
+sudo cp .camera_config ./config/.camera_config
+sudo cp calibration.json ./config/calibration.json
+sudo cp factory_defaults.json ./config/calibration.json
+sudo chattr -i ./config/factory_defaults.json
+```
 ## Services
 There are serveral services running to enable KORUZA functionality at startup.
 
@@ -122,7 +148,8 @@ After=multi-user.target
 
 [Service]
 Environment=LD_LIBRARY_PATH=/home/pi/mjpg-streamer/mjpg-streamer-experimental
-ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 720 -y 720 -fps 15 -ex snow -vs -roi 0.25,0.25,0.5,0.5"
+EnvironmentFile=/home/pi/koruza_v2/config/.camera_config
+ExecStart=/home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so -x 720 -y 720 -fps 15 -ex snow -awb auto -ifx denoise -mm average -roi ${X},${Y},${IMG_P},${IMG_P}"
 Restart=on-failure
 RestartSec=5
 
@@ -164,7 +191,7 @@ sudo systemctl start koruza_main
 ```
 [Unit]
 Description="Koruza UI service"
-After=multi-user.target koruza_main.service
+After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi
@@ -187,7 +214,7 @@ sudo systemctl start koruza_ui
 ```
 [Unit]
 Description="Koruza Device to Device management service"
-After=multi-user.target koruza_main.service
+After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi
@@ -203,6 +230,52 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload 
 sudo systemctl enable koruza_d2d
 sudo systemctl start koruza_d2d
+```
+
+### KORUZA Cloud service on boot
+1. Copy the snippet below and paste it to a new service file created with `sudo nano /etc/systemd/system/koruza_cloud.service`
+```
+[Unit]
+Description="Koruza Cloud service"
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_cloud.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+2. Run the following commands to enable the service
+```
+sudo systemctl daemon-reload 
+sudo systemctl enable koruza_cloud
+sudo systemctl start koruza_cloud
+```
+
+### KORUZA Cloud service on boot
+1. Copy the snippet below and paste it to a new service file created with `sudo nano /etc/systemd/system/koruza_alignment_engine.service`
+```
+[Unit]
+Description="Koruza Alignment Engine service"
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=python3 -m koruza_v2.koruza_v2_tracking.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+2. Run the following commands to enable the service
+```
+sudo systemctl daemon-reload 
+sudo systemctl enable koruza_alignment_engine
+sudo systemctl start koruza_alignment_engine
 ```
 
 ## Dependencies and older versions
