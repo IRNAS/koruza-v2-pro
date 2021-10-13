@@ -1,0 +1,12 @@
+{
+    "calibration": {
+        "offset_x": 0,
+        "offset_y": 0,
+        "zoom_level": 1
+    },
+    "camera_config": {
+        "X": 0.0,
+        "Y": 0.0,
+        "IMG_P": 1.0
+    }
+}

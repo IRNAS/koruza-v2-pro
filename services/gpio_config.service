@@ -1,6 +1,6 @@
 [Unit]
 Description="GPIO Config at Start"
-After=camera_stream
+After=multi-user.target
 
 [Service]
 ExecStart=/usr/bin/bash /home/pi/koruza_v2/services/gpio_config.sh

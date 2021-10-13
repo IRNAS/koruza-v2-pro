@@ -3,7 +3,7 @@ cd /home/pi/koruza_v2
 sudo pip3 install -r koruza_v2_ui/requirements.txt
 sudo pip3 install -r koruza_v2_cloud/requirements.txt 
 sudo pip3 install -r koruza_v2_driver/requirements.txt
-sudo pip3 install -r koruza_v2/requirements.txt
+sudo pip3 install -r requirements.txt
 sudo python3 -m pip install --force-reinstall adafruit-blinka
 
 # 1. install mjpeg-streamer
@@ -31,20 +31,29 @@ else
     echo "Device tree configuration already exists in /boot/dt-blob.bin"
 fi
 
-# 3. create koruza services and missing folders with files
+# 3. create koruza services and missing folders
 cd /home/pi/koruza_v2
 sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
+echo "Copying template data.json to /home/pi/koruza_v2_driver/data/data.json"
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
-
+echo "Copying secrets_example.json to /home/pi/koruza_v2_ui/secrets.json"
 sudo cp ./koruza_v2_ui/secrets_example.json ./koruza_v2_ui/secrets.json
+
+# 4. Configure interfaces
+echo "Enabling i2c"
+sudo raspi-config nonint do_i2c 0
+echo "Enabling camera"
+sudo raspi-config nonint do_camera 0
+echo "Enabling hardware serial"
+sudo raspi-config nonint do_serial 2 
 
 echo "Copying configuration files to /home/pi/koruza_v2/config"
 cd /home/pi/koruza_v2
 sudo mkdir ./config
 if [ ! -f "./config/config.json" ]; then
     echo "Copying config.json to /home/pi/koruza_v2/config/config.json"
-    sudo cp config.json ./config
+    sudo cp example_config.json ./config
 else
     echo "config.json already exists in /home/pi/koruza_v2/config/config.json"
 fi
@@ -58,14 +67,14 @@ fi
 
 if [ ! -f "./config/calibration.json" ]; then
     echo "Copying calibration.json to /home/pi/koruza_v2/config/calibration.json"
-    sudo cp calibration.json ./config/calibration.json
+    sudo cp .factory_defaults.json ./config/calibration.json
 else
     echo "calibration already exists in /home/pi/koruza_v2/config/calibration.json"
 fi
 
 if [ ! -f "./config/factory_defaults.json" ]; then
     echo "Copying factory_defaults.json to /home/pi/koruza_v2/config/factory_defaults.json"
-    sudo cp factory_defaults.json ./config/calibration.json
+    sudo cp .factory_defaults.json ./config/factory_defaults.json
     sudo chattr -i ./config/factory_defaults.json
 else
     echo "factory_defaults.json already exists in /home/pi/koruza_v2/config/factory_defaults.json"

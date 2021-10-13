@@ -30,7 +30,7 @@ def calculate_camera_config(zoom_factor):
 
     return x_pos, y_pos, image_percent
 
-def set_camera_config(x, y, img_p, W=720, H=720):
+def set_camera_config(x, y, img_p):
     """Write camera config to file"""
     # Read in the file
     with open("/home/pi/koruza_v2/config/.camera_config", "r") as file:
@@ -45,10 +45,6 @@ def set_camera_config(x, y, img_p, W=720, H=720):
             new_line = f"Y={y}\n"
         if "IMG_P" in line:
             new_line = f"IMG_P={img_p}"
-        if "W" in line:
-            new_line = f"W={W}"
-        if "H" in line:
-            new_line = f"H={H}"
         new_lines.append(new_line)
 
     # Write the file out again
