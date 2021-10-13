@@ -37,6 +37,8 @@ sudo mkdir ./logs
 sudo mkdir ./koruza_v2_driver/data
 sudo cp ./koruza_v2_driver/data.json ./koruza_v2_driver/data
 
+sudo cp ./koruza_v2_ui/secrets_example.json ./koruza_v2_ui/secrets.json
+
 echo "Copying configuration files to /home/pi/koruza_v2/config"
 cd /home/pi/koruza_v2
 sudo mkdir ./config
