@@ -53,7 +53,7 @@ cd /home/pi/koruza_v2
 sudo mkdir ./config
 if [ ! -f "./config/config.json" ]; then
     echo "Copying config.json to /home/pi/koruza_v2/config/config.json"
-    sudo cp example_config.json ./config
+    sudo cp example_config.json ./config/config.json
 else
     echo "config.json already exists in /home/pi/koruza_v2/config/config.json"
 fi
