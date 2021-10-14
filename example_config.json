@@ -26,9 +26,5 @@
             "addr": "xxx.xxx.xxx.xxx",
             "remote_unit_addr": "xxx.xxx.xxx.xxx"
         }
-    },
-    "camera": {
-        "width": 720,
-        "height": 720
     }
 }
