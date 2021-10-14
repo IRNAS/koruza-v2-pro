@@ -52,7 +52,7 @@ cd koruza_v2
 git submodule update --init
 ```
 
-3. Run the `./install.sh` script
+3. Run the install script with `bash install.sh` script
 
 OR follow these steps:
 
