@@ -72,7 +72,7 @@ sudo pip3 install -r requirements.txt
 cd ~
 git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
 ```
-2. Install cmake and libjpeg8-dev `sudo apt install cmake libjpeg8-dev`
+2. Install cmake and libjpeg8-dev `sudo apt install cmake libjpeg8-dev libopenjp2-7`
 3. Install mjpg-streamer fork
 ```
 cd mjpg-streamer/mjpg-streamer-experimental
