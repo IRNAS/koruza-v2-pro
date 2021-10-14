@@ -12,7 +12,7 @@ echo "Starting mjpg-streamer installation"
 if [ ! -d "/home/pi/mjpg-streamer" ]; then
     echo "Cloning mjpg-streamer fork"
     git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
-    sudo apt install cmake libjpeg8-dev
+    sudo apt install cmake libjpeg8-dev libopenjp2-7
     cd mjpg-streamer/mjpg-streamer-experimental
     echo "Installing mjpeg-streamer"
     make
