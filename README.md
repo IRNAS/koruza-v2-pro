@@ -52,14 +52,13 @@ cd koruza_v2
 git submodule update --init
 ```
 
-3. Run the ./install.sh script
+3. Run the `./install.sh` script
 
 OR follow these steps:
 
 3. Install python3 requirements with
 ```
 sudo pip3 install -r koruza_v2_ui/requirements.txt
-
 sudo pip3 install -r koruza_v2_cloud/requirements.txt 
 sudo pip3 install -r koruza_v2_driver/requirements.txt
 sudo pip3 install -r requirements.txt
