@@ -43,7 +43,7 @@ cd usbboot
 1. Install required dependencies with
 ```
 sudo apt update
-sudo apt install python3-pip wiringpi libatlas-base-dev git python3-matplotlib
+sudo apt install python3-pip wiringpi libatlas-base-dev git python3-matplotlib libopenjp2-7
 ```
 2. Clone this repository and init submodules with
 ```
