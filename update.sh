@@ -4,8 +4,9 @@
 echo "Moving into the koruza_v2 directory"
 cd /home/pi/koruza_v2
 echo "Pulling latest version of the KORUZA software"
+git fetch
 git checkout $1
-git pull --recurse-submodules
+git pull origin $1 --recurse-submodules
 
 echo "Running install.sh script"
 bash /home/pi/koruza_v2/install.sh
