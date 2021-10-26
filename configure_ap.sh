@@ -9,7 +9,7 @@ echo "Starting Access point configuration in ${mode} mode"
 if [ ${mode} == "primary" ]; then
     ap_ip=192.168.92.1
 else
-    ap_ip=192.168.92.2
+    ap_ip=192.168.94.1
 fi
 
 sudo apt install hostapd
@@ -36,9 +36,14 @@ else
     echo "Configuring DHCP and DNS services"
     sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
     sudo touch /etc/dnsmasq.conf
+    if [ ${mode} == "primary" ]; then
+        range="192.168.92.50,192.168.92.147,255.255.255.0,24h"
+    else
+        range="192.168.94.50,192.168.94.147,255.255.255.0,24h"
+    fi
     echo "
 interface=wlan0 # Listening interface
-dhcp-range=192.168.92.50,192.168.92.147,255.255.255.0,24h
+dhcp-range=${range}
                 # Pool of IP addresses served via DHCP
 domain=wlan
 address=/gw.wlan/${ap_ip}
@@ -136,7 +141,7 @@ else
     sudo apt install network-manager
     echo "[keyfile]
 unmanaged-devices=interface-name:wlan0" > /etc/NetworkManager/conf.d/unmanaged.conf
-    # sudo nmcli dev wifi connect "koruza-d2d" password "KoruzaV2d2d"
+    sudo nmcli con delete "koruza-d2d"
     sudo nmcli con add con-name "koruza-d2d" type wifi ifname wlan1 wifi.ssid "koruza-d2d" wifi-sec.psk "KoruzaV2d2d" 802-11-wireless-security.key-mgmt wpa-psk
     sudo nmcli con mod "koruza-d2d" ipv4.addresses 192.168.93.200/24
     sudo nmcli con mod "koruza-d2d" ipv4.gateway 192.168.93.20
