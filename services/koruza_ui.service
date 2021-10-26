@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi
-ExecStart=python3 -m koruza_v2.koruza_v2_ui.index
+ExecStart=sudo gunicorn koruza_v2.koruza_v2_ui.index:server -b :80
 Restart=on-failure
 RestartSec=5
 
