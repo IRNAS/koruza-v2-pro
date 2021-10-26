@@ -93,6 +93,15 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 " > /etc/hostapd/hostapd2.conf
     fi
+else
+    if grep -Fxq "interface wlan1" /etc/dhcpcd.conf; then
+        echo "wlan1 already configured"
+    else
+        echo "Setting nohook to wlan1"
+        echo "interface wlan1
+            nohook wpa_supplicant
+        " >> /etc/dhcpcd.conf
+    fi
 fi
 
 if grep -Fxq "wpa_passphrase=KoruzaV2Pro" /etc/hostapd/hostapd1.conf; then
