@@ -31,12 +31,12 @@ else
 fi
 
 if [ ${mode} == "primary" ]; then
-    if grep -Fxq "static ip_address=192.168.92.20/24" /etc/dhcpcd.conf; then
-        echo "d2d access AP ip already set to 192.168.92.20"
+    if grep -Fxq "static ip_address=192.168.93.20/24" /etc/dhcpcd.conf; then
+        echo "d2d access AP ip already set to 192.168.93.20"
     else
-        echo "Setting user access AP to 192.168.92.20"
+        echo "Setting user access AP to 192.168.93.20"
         echo "interface wlan1
-            static ip_address=192.168.92.20/24
+            static ip_address=192.168.93.20/24
             nohook wpa_supplicant
         " >> /etc/dhcpcd.conf
     fi
@@ -49,10 +49,10 @@ if [ ${mode} == "primary" ]; then
         sudo touch /etc/dnsmasq.conf
         echo "
     interface=wlan1 # Listening interface
-    dhcp-range=192.168.92.150,192.168.92.250,255.255.255.0,24h
+    dhcp-range=192.168.93.150,192.168.93.250,255.255.255.0,24h
                     # Pool of IP addresses served via DHCP
     domain=wlan
-    address=/gw.wlan/192.168.92.20
+    address=/gw.wlan/192.168.93.20
                     # Alias for this router
         " >> /etc/dnsmasq.conf
     fi
@@ -129,8 +129,8 @@ else
 unmanaged-devices=interface-name:wlan0" > /etc/NetworkManager/conf.d/unmanaged.conf
     # sudo nmcli dev wifi connect "koruza-d2d" password "KoruzaV2d2d"
     sudo nmcli con add con-name "koruza-d2d" type wifi ifname wlan1 wifi.ssid "koruza-d2d" wifi-sec.psk "KoruzaV2d2d" 802-11-wireless-security.key-mgmt wpa-psk
-    sudo nmcli con mod "koruza-d2d" ipv4.addresses 192.168.92.200/24
-    sudo nmcli con mod "koruza-d2d" ipv4.gateway 192.168.92.20
+    sudo nmcli con mod "koruza-d2d" ipv4.addresses 192.168.93.200/24
+    sudo nmcli con mod "koruza-d2d" ipv4.gateway 192.168.93.20
     sudo nmcli con mod "koruza-d2d" ipv4.dns 8.8.8.8
     sudo nmcli con mod "koruza-d2d" ipv4.method manual
     sudo nmcli connection up "koruza-d2d"
