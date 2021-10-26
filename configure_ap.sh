@@ -30,6 +30,22 @@ else
     " >> /etc/dhcpcd.conf
 fi
 
+if grep -Fxq "interface=wlan0" /etc/dnsmasq.conf; then
+    echo "DHCP and DNS services already configured"
+else
+    echo "Configuring DHCP and DNS services"
+    sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+    sudo touch /etc/dnsmasq.conf
+    echo "
+interface=wlan0 # Listening interface
+dhcp-range=192.168.92.50,192.168.92.147,255.255.255.0,24h
+                # Pool of IP addresses served via DHCP
+domain=wlan
+address=/gw.wlan/${ap_ip}
+                # Alias for this router
+    " >> /etc/dnsmasq.conf
+fi
+
 if [ ${mode} == "primary" ]; then
     if grep -Fxq "static ip_address=192.168.92.20/24" /etc/dhcpcd.conf; then
         echo "d2d access AP ip already set to 192.168.92.20"
@@ -45,7 +61,7 @@ if [ ${mode} == "primary" ]; then
         echo "DHCP and DNS services already configured"
     else
         echo "Configuring DHCP and DNS services"
-        sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+        # sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
         sudo touch /etc/dnsmasq.conf
         echo "
     interface=wlan1 # Listening interface
@@ -77,22 +93,6 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 " > /etc/hostapd/hostapd2.conf
     fi
-fi
-
-if grep -Fxq "interface=wlan0" /etc/dnsmasq.conf; then
-    echo "DHCP and DNS services already configured"
-else
-    echo "Configuring DHCP and DNS services"
-    # sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-    sudo touch /etc/dnsmasq.conf
-    echo "
-interface=wlan0 # Listening interface
-dhcp-range=192.168.92.50,192.168.92.147,255.255.255.0,24h
-                # Pool of IP addresses served via DHCP
-domain=wlan
-address=/gw.wlan/${ap_ip}
-                # Alias for this router
-    " >> /etc/dnsmasq.conf
 fi
 
 if grep -Fxq "wpa_passphrase=KoruzaV2Pro" /etc/hostapd/hostapd1.conf; then
