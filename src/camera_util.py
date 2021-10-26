@@ -131,9 +131,12 @@ def generate_marker(pos_x, pos_y, SQUARE_SIZE):
 def generate_overlay_image(marker_x, marker_y, SQUARE_SIZE, filename):
     img = Image.new("RGBA", (1440, 1440), color=(255, 255, 255, 0))
 
-    x = 2 * marker_x - (2 * SQUARE_SIZE)
-    y = 1440 - 2 * marker_y + (2 * SQUARE_SIZE)
-    shape = [(x, y), (x + (4 * SQUARE_SIZE), y - (4 * SQUARE_SIZE))]
+    x = 2 * marker_x
+    y = 1440 - 2 * marker_y
+    # up_left = [(x, y), (x + (4 * SQUARE_SIZE), y - (4 * SQUARE_SIZE))]
+    lb_rt = (x - SQUARE_SIZE, y - SQUARE_SIZE, x + SQUARE_SIZE, y + SQUARE_SIZE)
+    lt_rb = (x - SQUARE_SIZE, y + SQUARE_SIZE, x + SQUARE_SIZE, y - SQUARE_SIZE)
     img1 = ImageDraw.Draw(img)
-    img1.rectangle(shape, outline="lime", width=2)
+    img1.line(lb_rt, fill=(255, 0, 0), width=3)
+    img1.line(lt_rb, fill=(255, 0, 0), width=3)
     img.save(filename)
