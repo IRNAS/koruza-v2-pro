@@ -43,7 +43,7 @@ cd usbboot
 1. Install required dependencies with
 ```
 sudo apt update
-sudo apt install python3-pip wiringpi libatlas-base-dev git python3-matplotlib
+sudo apt install python3-pip wiringpi libatlas-base-dev git python3-matplotlib libopenjp2-7
 ```
 2. Clone this repository and init submodules with
 ```
@@ -52,14 +52,13 @@ cd koruza_v2
 git submodule update --init
 ```
 
-3. Run the ./install.sh script
+3. Run the install script with `bash install.sh` script
 
 OR follow these steps:
 
 3. Install python3 requirements with
 ```
 sudo pip3 install -r koruza_v2_ui/requirements.txt
-
 sudo pip3 install -r koruza_v2_cloud/requirements.txt 
 sudo pip3 install -r koruza_v2_driver/requirements.txt
 sudo pip3 install -r requirements.txt
@@ -72,7 +71,7 @@ sudo pip3 install -r requirements.txt
 cd ~
 git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
 ```
-2. Install cmake and libjpeg8-dev `sudo apt install cmake libjpeg8-dev`
+2. Install cmake and libjpeg8-dev `sudo apt install cmake libjpeg8-dev libopenjp2-7`
 3. Install mjpg-streamer fork
 ```
 cd mjpg-streamer/mjpg-streamer-experimental

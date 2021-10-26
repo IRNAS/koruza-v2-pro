@@ -1,6 +1,6 @@
 {
-    "unit_id": "not_set",
-    "version": "not_set",
+    "unit_id": "Not Set",
+    "version": "Not Set",
     "cloud_config": {
         "url": "www.influxdb.com/koruza",
         "port": 8086,
@@ -12,23 +12,19 @@
     "link_config": {
         "channel": "wifi",
         "ble": {
-            "mode": "primary",
-            "addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            "remote_unit_addr": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            "mode": "secondary",
+            "addr": "Not Set",
+            "remote_unit_addr": "Not Set"
         },
         "wifi": {
-            "mode": "primary",
-            "addr": "xxx.xxx.xxx.xxx",
-            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+            "mode": "secondary",
+            "addr": "Not Set",
+            "remote_unit_addr": "Not Set"
         },
         "local": {
-            "mode": "primary",
-            "addr": "xxx.xxx.xxx.xxx",
-            "remote_unit_addr": "xxx.xxx.xxx.xxx"
+            "mode": "secondary",
+            "addr": "Not Set",
+            "remote_unit_addr": "Not Set"
         }
-    },
-    "camera": {
-        "width": 720,
-        "height": 720
     }
 }

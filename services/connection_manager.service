@@ -1,0 +1,13 @@
+[Unit]
+Description=Koruza d2d connection manager service
+After=multi-user.target network.target
+
+[Service]
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 -m koruza_v2.src.network_manager
+Type=simple
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

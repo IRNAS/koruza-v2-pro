@@ -12,7 +12,7 @@ echo "Starting mjpg-streamer installation"
 if [ ! -d "/home/pi/mjpg-streamer" ]; then
     echo "Cloning mjpg-streamer fork"
     git clone https://github.com/IRNAS/mjpg-streamer -b feature/raspicam-roi
-    sudo apt install cmake libjpeg8-dev
+    sudo apt install cmake libjpeg8-dev libopenjp2-7
     cd mjpg-streamer/mjpg-streamer-experimental
     echo "Installing mjpeg-streamer"
     make
@@ -53,7 +53,7 @@ cd /home/pi/koruza_v2
 sudo mkdir ./config
 if [ ! -f "./config/config.json" ]; then
     echo "Copying config.json to /home/pi/koruza_v2/config/config.json"
-    sudo cp example_config.json ./config
+    sudo cp example_config.json ./config/config.json
 else
     echo "config.json already exists in /home/pi/koruza_v2/config/config.json"
 fi
@@ -93,15 +93,6 @@ echo "Starting all services"
 sudo systemctl daemon-reload
 sudo systemctl enable koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
 sudo systemctl start koruza_main koruza_ui koruza_d2d koruza_alignment_engine koruza_cloud gpio_config video_stream
-
-echo "Enabling i2c"
-sudo raspi-config nonint do_i2c 0
-
-echo "Enabling camera"
-sudo raspi-config nonint do_camera 0
-
-echo "Enabling hardware serial"
-sudo raspi-config nonint do_serial 2 
 
 echo "Rebooting RPi for configuration to take effect"
 sleep 1

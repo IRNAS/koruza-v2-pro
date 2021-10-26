@@ -1,0 +1,11 @@
+[Unit]
+Description="Hostapd multiple AP service"
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/sbin/hostapd /etc/hostapd/hostapd%i.conf
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
