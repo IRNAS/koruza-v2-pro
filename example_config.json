@@ -12,17 +12,17 @@
     "link_config": {
         "channel": "wifi",
         "ble": {
-            "mode": "primary",
+            "mode": "secondary",
             "addr": "Not Set",
             "remote_unit_addr": "Not Set"
         },
         "wifi": {
-            "mode": "primary",
+            "mode": "secondary",
             "addr": "Not Set",
             "remote_unit_addr": "Not Set"
         },
         "local": {
-            "mode": "primary",
+            "mode": "secondary",
             "addr": "Not Set",
             "remote_unit_addr": "Not Set"
         }
