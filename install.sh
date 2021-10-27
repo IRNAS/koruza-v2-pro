@@ -80,6 +80,13 @@ else
     echo "factory_defaults.json already exists in /home/pi/koruza_v2/config/factory_defaults.json"
 fi
 
+echo "Generating certificates"
+sudo openssl req \
+    -x509 -nodes -days 18250 -newkey rsa:2048 \
+    -subj "/C=SI/L=Maribor/O=IRNAS d.o.o./CN=www.koruza.net" \
+    -keyout /etc/ssl/private/selfsigned.key \
+    -out /etc/ssl/certs/selfsigned.crt  # generate a self-signed key
+
 echo "Copying koruza services to /etc/systemd/system/"
 sudo cp /home/pi/koruza_v2/services/gpio_config.service /etc/systemd/system/gpio_config.service
 sudo cp /home/pi/koruza_v2/services/video_stream.service /etc/systemd/system/video_stream.service
