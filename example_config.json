@@ -25,6 +25,7 @@
             "mode": "secondary",
             "addr": "Not Set",
             "remote_unit_addr": "Not Set"
-        }
+        },
+        "alignment": false
     }
 }
